@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Home Automation Control</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            text-align: center;
+            background-color: #f4f4f9;
+            padding: 20px;
+        }
+        button {
+            padding: 15px 30px;
+            font-size: 20px;
+            margin: 20px;
+            cursor: pointer;
+        }
+        #status {
+            font-size: 24px;
+            color: green;
+            margin-top: 20px;
+        }
+    </style>
+</head>
+<body>
+
+    <h1>Home Automation - Bulb Control</h1>
+    <button id="onBtn">Turn ON</button>
+    <button id="offBtn">Turn OFF</button>
+
+    <div id="status">Status: OFF</div>
+
+    <script>
+        const onBtn = document.getElementById('onBtn');
+        const offBtn = document.getElementById('offBtn');
+        const status = document.getElementById('status');
+
+        const ip = '192.168.1.100'; // Replace with your ESP8266's IP address
+        const port = '80';
+
+        // Turn Relay ON
+        onBtn.addEventListener('click', () => {
+            fetch(`http://${ip}:${port}/on`)
+                .then(response => response.text())
+                .then(data => {
+                    status.innerText = 'Status: ON';
+                    status.style.color = 'green';
+                })
+                .catch(error => console.error('Error:', error));
+        });
+
+        // Turn Relay OFF
+        offBtn.addEventListener('click', () => {
+            fetch(`http://${ip}:${port}/off`)
+                .then(response => response.text())
+                .then(data => {
+                    status.innerText = 'Status: OFF';
+                    status.style.color = 'red';
+                })
+                .catch(error => console.error('Error:', error));
+        });
+    </script>
+
+</body>
+</html>
