@@ -6,8 +6,8 @@
   #include <ESP8266WiFi.h>
 #include <BlynkSimpleEsp8266.h>
 
-char ssid[] = "NOTE12";
-char pass[] = "wohhihai";
+char ssid[] = "SSID NO.";
+char pass[] = "Password";
 
 
 #define RELAY_PIN D4  // Change to the GPIO pin connected to your relay/LED
